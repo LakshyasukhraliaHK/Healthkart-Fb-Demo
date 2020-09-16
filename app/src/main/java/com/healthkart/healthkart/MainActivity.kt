@@ -6,6 +6,8 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.FacebookSdk
 import com.facebook.appevents.AppEventsConstants
+import com.healthkart.healthkart.TrackingConstant.Attribute.ITEM_SECONDARY_CATEGORY
+import java.lang.String
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun tempFacebookEventParam() : Bundle?{
+    private fun tempFacebookEventParam(): Bundle? {
         try {
             // Facebook event tracking for analytics
             val parameters = Bundle()
@@ -43,46 +45,72 @@ class MainActivity : AppCompatActivity() {
             parameters.putString("Product Name", "temp123")
             parameters.putString("Brand Name", "temp123")
             parameters.putString("Category Name", "temp123")
-
+//            val variantAttributes: List<VariantAttribute> = variantInfo.getAttributeList()
+//            if (variantAttributes != null) {
+            var primaryAttrName = "temp123"
+            var primaryAttrValue = "temp123"
+            var secondaryAttrName = "temp123"
+            var secondaryAttrValue = "temp123"
+//                val len: Int = variantInfo.getAttributeList().size()
+//                for (i in 0 until len) {
+//                    val variantAttribute: VariantAttribute = variantAttributes[i]
+//                    if (i == 0) {
+//                        primaryAttrName = primaryAttrName + variantAttribute.getDisplayName()
+//                        primaryAttrValue =
+//                            primaryAttrValue + variantAttribute.getSelectedValue().getValueName()
+//                    } else {
+//                        if (i + 1 == len) {
+//                            secondaryAttrName =
+//                                secondaryAttrName + variantAttribute.getDisplayName()
+//                            secondaryAttrValue =
+//                                secondaryAttrValue + variantAttribute.getSelectedValue()
+//                                    .getValueName()
+//                        } else {
+//                            secondaryAttrName =
+//                                secondaryAttrName + variantAttribute.getDisplayName()
+//                                    .toString() + ","
+//                            secondaryAttrValue =
+//                                secondaryAttrValue + variantAttribute.getSelectedValue()
+//                                    .getValueName().toString() + ","
+//                        }
+//                    }
+//                }
             parameters.putString(
-                "temp123",
+                TrackingConstant.Attribute.PRIMARY_ATTRIBUTE_NAME,
+                primaryAttrName
+            )
+            parameters.putString(
+                TrackingConstant.Attribute.PRIMARY_ATTRIBUTE_VALUE,
+                primaryAttrValue
+            )
+            parameters.putString(
+                TrackingConstant.Attribute.SECONDARY_ATTRIBUTE_NAME,
+                secondaryAttrName
+            )
+            parameters.putString(
+                TrackingConstant.Attribute.SECONDARY_ATTRIBUTE_VALUE,
+                secondaryAttrValue
+            )
+//            }
+            parameters.putString(
+                TrackingConstant.Attribute.VARIANT_ID,
                 "temp123"
             )
+            parameters.putString(TrackingConstant.Attribute.LEAF_NODE, "temp123")
+            parameters.putString(TrackingConstant.Attribute.VENDOR, "temp123")
             parameters.putString(
-                "temp123",
-                "temp123"
-            )
-            parameters.putString(
-                "temp123",
-                "temp123"
-            )
-            parameters.putString(
-                "temp123",
-                "temp123"
+                TrackingConstant.Attribute.PRICE,
+                "112233"
             )
 
-            parameters.putString(
-                "temp123",
-                "temp123"
-            )
-            parameters.putString("temp123", "temp123")
-            parameters.putString("temp123", "temp123")
-            parameters.putString(
-                "temp123",
-                "123.0"
-            )
-
-            parameters.putString("temp123", "temp123")
-            parameters.putString("temp123", "temp123")
-
-            parameters.putString("temp123", "temp123")
-
+            parameters.putString(EventConstants.CAT_PREFIX, "temp123")
+            parameters.putString(ITEM_SECONDARY_CATEGORY, "temp123")
+            parameters.putString(EventConstants.AWS_PAGE_NAME, "temp123")
             return parameters
         } catch (e: Exception) {
             println("Exception in facebook event tracking")
             Log.d("Exception", e.localizedMessage)
+            return null
         }
-
-        return null
     }
 }
